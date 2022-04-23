@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [formGroup]="form">
+    <ion-item>
+      <ion-label>Email:</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Password:</ion-label>
+      <ion-input [type]="passwordType" formControlName="password"></ion-input>
+      <ion-button slot="end" (click)="togglePasswordType()">
+        <ion-icon [name]="eyeType"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-button expand="full" [disabled]="!form.valid" (click)="login()">Login</ion-button>
+    <ion-item lines="none">
+      <ion-label>Forgot your password?</ion-label>
+      <ion-button routerLink="/forgotpw">Get a new one</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
