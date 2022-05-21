@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { AlertController, MenuController, ModalController } from '@ionic/angular';
+import { EventDetailPage } from '../event-detail/event-detail.page';
 import { OdooService } from '../services/odoo.service';
 
 @Component({
@@ -14,7 +15,9 @@ export class EventsPage implements OnInit, AfterViewInit {
 
   constructor(private menu: MenuController, 
     private odooService: OdooService,
-    private datePipe: DatePipe) { }
+    private alertCtrl: AlertController,
+    private datePipe: DatePipe,
+    public modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -27,18 +30,38 @@ export class EventsPage implements OnInit, AfterViewInit {
         this.events = ev['result'];
         for(let e of this.events) {
           e.start_date = this.datePipe.transform(e.start, "EEEE, dd.MM.yyyy");
-          console.log(e);
         }
-        console.log(this.events)
       }
     });
   }
 
   changeParticipation($event, eid) {
-    console.log($event, eid);
     this.odooService.setParticipation(eid, $event.detail.value).then(v => {
-      console.log(v);
+    }).catch(e => {
+      this.alertCtrl.create({
+        header: 'Error',
+        message: 'Could not change participation. Please try again, later.',
+        buttons: [{
+          text: 'Close',
+          role: 'close'
+        }]
+      }).then(a => a.present());
     });
+  }
+
+  stopPropagation($event) {
+    $event.stopPropagation();
+  }
+
+  async showDetails(eid: number) {
+    const modal = await this.modalCtrl.create({
+      component: EventDetailPage,
+      cssClass: 'event-detail',
+      swipeToClose: true,
+      presentingElement: await this.modalCtrl.getTop(),
+      componentProps: {'eid': eid}
+    });
+    return await modal.present();
   }
 
 }

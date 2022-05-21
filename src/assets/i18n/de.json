@@ -1,0 +1,66 @@
+{
+    "events": {
+        "title": "Events"
+    },
+
+    "event-detail": {
+        "close": "Schliessen",
+        "general": "Allgemeine Infos",
+        "when": "Wann",
+        "duration": "Dauer",
+        "where": "Wo",
+        "attendees": "Teilnehmer",
+        "attendances": "An-/Abmeldungen",
+        "allday": "Ganztägig"
+    },
+
+    "forgotpw": {
+        "title": "Passwort zurücksetzen",
+        "email": "E-Mail",
+        "reset": "Zurücksetzen",
+        "error": "Beim zurücksetzen des Passworts ist ein Fehler aufgetreten. Bitte überprüfe die angegebene E-Mail Adresse oder versuche es später erneut.",
+        "login": "Zurück zum Login"
+    },
+
+    "info": {
+
+    },
+
+    "login": {
+        "email": "E-Mail",
+        "password": "Passwort",
+        "login": "Anmelden",
+        "forgotpwlink": "Passwort vergessen?"
+    },
+
+    "profile": {
+        "title": "Profil",
+        "select-date": "Datum auswählen",
+        "select-one": "wählen",
+
+        "name": "Name",
+        "email": "E-Mail",
+        "lang": "Sprache",
+        "street": "Strasse",
+        "zip": "PLZ",
+        "city": "Ort",
+        "country_id": "Land",
+        "birthday": "Geburtstag",
+        "position": "Position",
+        "trikot_num": "Trikotnummer",
+        "trikot_name": "Trikotname",
+        "licenced": "Lizensiert",
+        "ref_licence": "Schiri-Lizenz",
+        "member_status": "Mitgliedschaft",
+
+        "groups": "Gruppen"
+    },
+
+    "app": {
+        "events": "Events",
+        "profile": "Profil",
+        "info": "Über",
+        "logout": "Abmelden"
+    }
+
+}

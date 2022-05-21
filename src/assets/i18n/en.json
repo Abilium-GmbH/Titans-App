@@ -1,0 +1,66 @@
+{
+    "events": {
+        "title": "Events"
+    },
+
+    "event-detail": {
+        "close": "Close",
+        "general": "General",
+        "when": "When",
+        "duration": "Duration",
+        "where": "Where",
+        "attendees": "Attendees",
+        "attendances": "Attendances",
+        "allday": "all day"
+    },
+
+    "forgotpw": {
+        "title": "Reset password",
+        "email": "Email",
+        "reset": "reset",
+        "error": "There was an error requesting a password reset link for the given email address. Please try again later or with a different address.",
+        "login": "Back to login"
+    },
+
+    "info": {
+
+    },
+
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Sign in",
+        "forgotpwlink": "Lost password?"
+    },
+
+    "profile": {
+        "title": "Profile",
+        "select-date": "Choose date",
+        "select-one": "choose",
+
+        "name": "Name",
+        "email": "Email",
+        "lang": "Language",
+        "street": "Street",
+        "zip": "Zip",
+        "city": "City",
+        "country_id": "Country",
+        "birthday": "Birthday",
+        "position": "Position",
+        "trikot_num": "Trikotnumber",
+        "trikot_name": "Trikotname",
+        "licenced": "Licensed",
+        "ref_licence": "Referee Licence",
+        "member_status": "Membership",
+
+        "groups": "Groups"
+    },
+
+    "app": {
+        "events": "Events",
+        "profile": "Profile",
+        "info": "About",
+        "logout": "Sign off"
+    }
+
+}

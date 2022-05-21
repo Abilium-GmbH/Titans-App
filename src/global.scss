@@ -25,7 +25,53 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-ion-toolbar {
-    --background: var(--ion-color-primary-shade);
-    //--color: var(--)
+ion-button.text-icon-only {
+    --background: none;
+    --color: var(--ion-color-primary);
+    --box-shadow: none;
+}
+
+.date-button {
+    margin: 0;
+    display: flex;
+    //width: 100%;
+    //flex: 1;
+    position: relative;
+    padding: 0!important;
+    text-align: center;
+    font-size: inherit;
+    --color: black !important;
+    font-weight: normal;
+    text-transform: none;
+
+    &[disabled] {
+        opacity: 1;
+    }
+}
+
+ion-app.md {
+
+    ion-toolbar {
+        --color: var(--ion-color-primary)
+    }
+}
+
+ion-label.never-disabled {
+    opacity: 1 !important;
+}
+
+.combo {
+    --padding-start:8px;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.mw-200 {
+    max-width: 200px;
+}
+
+.mw-unset {
+    max-width: unset !important;
 }

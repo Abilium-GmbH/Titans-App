@@ -1,0 +1,26 @@
+@import "../../global.scss";
+
+.forgotpw {
+    margin-top: 1em;
+}
+
+.logo {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    img {
+        width: 80%;
+        height: auto;
+        max-width: 350px;
+    }
+}
+
+.box {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+}
+
+ion-list {
+    max-width: 350px;
+}

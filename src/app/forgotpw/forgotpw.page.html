@@ -1,22 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Reset password</ion-title>
+    <ion-title>{{'forgotpw.title' | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list [formGroup]="form">
     <ion-item lines="none">
-      <ion-label>Email:</ion-label>
+      <ion-label>{{'forgotpw.email' | translate}}</ion-label>
       <ion-input formControlName="email"></ion-input>
     </ion-item>
-    <ion-button expand="full" (click)="resetPassword()">Reset password</ion-button>
+    <ion-button expand="full" (click)="resetPassword()">{{'forgotpw.reset' | translate}}</ion-button>
     <ion-item *ngIf="error">
-      <p class="error">There was an error requesting a password reset link for the given email address. Please try again later or with a different address.</p>
+      <p class="error">{{'forgotpw.error' | translate}}</p>
     </ion-item>
-    <ion-item lines="none">
-      <ion-label>Remembered your password?</ion-label>
-      <ion-button routerLink="/login">Log in here</ion-button>
+    <ion-item class="login" lines="none">
+      <ion-label></ion-label>
+      <ion-button class="text-icon-only" routerLink="/login">{{'forgotpw.login' | translate}}Log in here</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -4,9 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { InfoPageRoutingModule } from './info-routing.module';
+import { EventDetailPageRoutingModule } from './event-detail-routing.module';
 
-import { InfoPage } from './info.page';
+import { EventDetailPage } from './event-detail.page';
+import { MapComponent } from '../map/map.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -15,8 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     TranslateModule,
-    InfoPageRoutingModule
+    EventDetailPageRoutingModule,
   ],
-  declarations: [InfoPage]
+  declarations: [EventDetailPage, MapComponent]
 })
-export class InfoPageModule {}
+export class EventDetailPageModule {}

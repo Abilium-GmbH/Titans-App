@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">{{'event-detail.close' | translate}}</ion-button>
+    </ion-buttons>
+    <ion-title>{{data?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="data">
+    <ion-list>
+      <ion-item-divider>
+        {{'event-detail.general' | translate}}
+      </ion-item-divider>
+      <ion-item *ngIf="data.description">
+        <div class="col">
+          <div class="row">
+            {{'event-detail.what' | translate}}
+          </div>
+          <div class="row">
+            {{data.description}}
+          </div>
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'event-detail.when' | translate}}</ion-label>
+        {{data.start_date}} <ng-container *ngIf="data.stop_date && data.stop_date !=  data.end_date">- {{data.stop_date}}</ng-container>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'event-detail.duration' | translate}}</ion-label>
+        <ng-container *ngIf="data.allday; else hours">
+          {{'event-detail.allday' | translate}}
+        </ng-container>
+        <ng-template #hours>
+          {{data.durationHours + 'h'}}
+        </ng-template>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'event-detail.where' | translate}}</ion-label>
+        {{data.location? data.location : 'TBD'}}
+      </ion-item> 
+      <ion-item>
+        <ion-label>{{'event-detail.attendees' | translate}}</ion-label>
+        {{data.attendees_count}}
+      </ion-item>
+
+      <ion-item-divider>
+        {{'event-detail.attendances' | translate}}
+      </ion-item-divider>
+      <ion-item *ngFor="let a of data.partner_answers" [ngClass]="{'gray': !a.answer}">
+        <ion-label>
+          <span class="trikot">
+            <ng-container *ngIf="a.trikot_num">
+              #{{a.trikot_num}}
+            </ng-container>
+          </span>
+          {{a.name}}</ion-label>
+          <ng-container *ngIf="a.answer=='yes'; else other">
+            <ion-icon class="attending" name="checkmark-outline"></ion-icon>
+          </ng-container>
+          <ng-template #other>
+            <ng-container *ngIf="a.answer=='no'; else unknown">
+              <ion-icon name="close-outline"></ion-icon>
+            </ng-container>
+            <ng-template #unknown>
+            </ng-template>
+          </ng-template>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+</ion-content>

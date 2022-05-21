@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ForgotpwPageRoutingModule } from './forgotpw-routing.module';
 
 import { ForgotpwPage } from './forgotpw.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { ForgotpwPage } from './forgotpw.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    TranslateModule,
     ForgotpwPageRoutingModule
   ],
   declarations: [ForgotpwPage]

@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { OdooService } from '../services/odoo.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { OdooService } from '../services/odoo.service';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
+    TranslateModule,
     LoginPageRoutingModule
   ],
   declarations: [LoginPage]

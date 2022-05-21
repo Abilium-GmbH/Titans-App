@@ -3,17 +3,64 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Profile</ion-title>
+    <ion-title>{{'profile.title' | translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!editing; else b_editing" (click)="startEditing()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+      <ng-template #b_editing>
+        <ion-button (click)="endEditing()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+      </ng-template>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Profile</ion-title>
+      <ion-title size="large">{{'profile.title' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
   
-  <ion-list>
+  <ion-list [formGroup]="form">
+    <ion-item *ngFor="let f of fields_values">
+      <ion-label class="w-50 mw-200 never-disabled">{{'profile.' + f.name | translate}}</ion-label>
+      <ng-container [ngSwitch]="f.type">
+        <ion-input *ngSwitchCase="'text'"
+        [readonly]="!f.editable || !editing" 
+        [disabled]="!f.editable && editing" 
+        [value]="f.value"
+        formControlName="{{f.name}}"
+        [type]="f.type"></ion-input>
+        <ng-container *ngSwitchCase="'date'">
+          <ion-button id="open-modal" class="text-icon-only date-button"
+            [disabled]="!editing || !f.editable">{{f.value? (f.value | date:'dd.MM.yyyy') : 'profile.select-date' | translate}}</ion-button>
+          <ion-input type="hidden" [value]="f.value" formControlName="{{f.name}}"></ion-input>
+          <ion-popover trigger="open-modal" show-backdrop="false">
+            <ng-template>
+              <ion-datetime
+                #popoverDatetime
+                presentation="date"
+                (ionChange)="f.value = convDate(popoverDatetime.value)"
+              ></ion-datetime>
+            </ng-template>
+          </ion-popover>
+        </ng-container>
+        <ng-container *ngSwitchCase="'combo'">
+          <ng-container *ngIf="f.combo_values">
+            <ion-select class="combo" formControlName="{{f.name}}" [disabled]="!editing || !f.editable" #selectField placeholder="{{'profile.select-one' | translate}}" (ionChange)="f.value = selectField.value">
+              <ion-select-option *ngFor="let c of f.combo_values" [value]="c.id">{{c.name}}</ion-select-option>
+            </ion-select>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      
+    </ion-item>
+    <ion-item-divider>{{'profile.groups' | translate}}</ion-item-divider>
+    <ion-item *ngFor="let g of groups">
+      <ion-label>{{g.name}}</ion-label>
+    </ion-item>
 </ion-list>
 </ion-content>
