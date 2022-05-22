@@ -7,13 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" scroll-y="false">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">{{'events.title' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
-  
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-item *ngFor="let e of events" (click)="showDetails(e.id)">
       <div class="col">
@@ -23,6 +25,10 @@
         <div class="row">
           {{e.name}}
         </div>
+        
+      </div>
+      <div class="row">
+        <app-colormatrix [colors]="e.colors"></app-colormatrix>
       </div>
       <ion-segment slot="end" [value]="e.my_answer" (ionChange)="changeParticipation($event, e.id)">
         <ion-segment-button value="yes" (click)="stopPropagation($event)">

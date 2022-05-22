@@ -7,11 +7,13 @@
         "close": "Schliessen",
         "general": "Allgemeine Infos",
         "when": "Wann",
+        "what": "Was",
         "duration": "Dauer",
         "where": "Wo",
         "attendees": "Teilnehmer",
         "attendances": "An-/Abmeldungen",
-        "allday": "Ganztägig"
+        "allday": "Ganztägig",
+        "calendars": "Kalender"
     },
 
     "forgotpw": {

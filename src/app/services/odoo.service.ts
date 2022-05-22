@@ -18,6 +18,7 @@ export class OdooService {
 
     private STORE_USER_KEY = "STORE_USER_KEY";
     private STORE_SESSION_KEY = "STORE_SESSION_KEY";
+    private STORE_EXPIRE_DATE_KEY = "STORE_EXPIRE_DATE_KEY";
 
     token: string;
     userdata: any;
@@ -52,6 +53,7 @@ export class OdooService {
             this.userdata = JSON.parse(data);
             if(this.userdata) {
                 this.partner_id = this.userdata.partner_id;
+                console.log("loaded from cookie", this.userdata.user_context.lang.substring(0,2))
                 this.translate.use(this.userdata.user_context.lang.substring(0,2));
             }
             
@@ -75,10 +77,10 @@ export class OdooService {
                 this.userdata = data.body['result'];
                 this.partner_id = this.userdata.partner_id;
                 let expires = new Date(tokenString.split("; ")[1].split("=")[1]);
+                localStorage.setItem(this.STORE_EXPIRE_DATE_KEY, JSON.stringify(expires));
                 this.cookie.set(this.STORE_SESSION_KEY, this.token, expires);
                 this.cookie.set(this.STORE_USER_KEY, JSON.stringify(this.userdata), expires);
                 this.translate.use(this.userdata.user_context.lang.substring(0,2));
-                console.log(this.userdata.user_context.lang.substring(0,2))
                 resolve(true);
             }).catch(e => {
                 console.log("failed logging in", e);
@@ -144,6 +146,11 @@ export class OdooService {
                 "params": {
                   "partner": profileData, 
                 }}).toPromise().then(v => {
+                if(profileData['lang']) {
+                    this.userdata.user_context.lang = profileData['lang'];
+                    let expires = localStorage.getItem(this.STORE_EXPIRE_DATE_KEY)  ? new Date(JSON.parse(localStorage.getItem(this.STORE_EXPIRE_DATE_KEY))) : new Date(new Date().getTime() + 1000*3600*24);
+                    this.cookie.set(this.STORE_USER_KEY, JSON.stringify(this.userdata), expires);
+                }
                 resolve(v);
             });
         }); 
@@ -224,6 +231,9 @@ export class OdooService {
                 ],
                 "kwargs": {
                     "fields": Object.keys(fields),
+                    "context":  {
+                        "lang": this.getLanguageCodeOfLoggedIn()
+                    },
                  }
             }
             }).toPromise().then(res => {
@@ -236,10 +246,52 @@ export class OdooService {
         });
     }
 
+    getLanguageCodeOfLoggedIn(): string {
+        if(this.userdata 
+            && this.userdata.user_context) {
+            return this.userdata.user_context.lang;
+        }
+        return "en_GB";   
+    }
+
     adm(model, field, value) {
         if(model.fields_display_mapper && field in model.fields_display_mapper) {
             return model.fields_display_mapper[field](value);
         }
         return value;
+    }
+
+    colors = {
+        Radicchio: '#AD1457',
+        Mandarine: '#F4511E',
+        Zitrone: '#E4C441',
+        Basilikum: '#0B8043',
+        Heidelbeere: '#3F51B5',
+        Weintraube: '#8E24AA',
+        Kirschblüte: '#D81B60',
+        Kürbis: '#EF6C00',
+        Avocado: '#C0CA33',
+        Eukalyptus: '#009688',
+        Lavendel: '#7986CB',
+        Kakao: '#795548',
+        Tomate: '#d50000',
+        Mango: '#F09300',
+        Pistazie: '#7CB342',
+        Pfau: '#039BE5',
+        Flieder: '#B39DDB',
+        Grafit: '#616161',
+        Flamingo: '#E67C73',
+        Banane: '#F6BF26',
+        Salbei: '#33B679',
+        Kobalt: '#4285F4',
+        Amethyst: '#9E69AF',
+        Birke: '#A79B8E'
+    };
+
+    getHexColorForName(colorName: string): string {
+        if(this.colors[colorName]) {
+            return this.colors[colorName];
+        }
+        return '#000000';
     }
 }

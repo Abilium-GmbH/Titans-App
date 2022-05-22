@@ -8,6 +8,7 @@ import { EventsPageRoutingModule } from './events-routing.module';
 
 import { EventsPage } from './events.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { ColormatrixComponentModule } from '../colormatrix/colormatrix.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicModule,
     TranslateModule,
     EventsPageRoutingModule,
+    ColormatrixComponentModule
   ],
   declarations: [EventsPage]
 })

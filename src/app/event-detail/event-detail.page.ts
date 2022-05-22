@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, IonRouterOutlet, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { OdooService } from '../services/odoo.service';
 
 @Component({
@@ -17,6 +18,7 @@ export class EventDetailPage implements OnInit {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private odooService: OdooService,
+    private translate: TranslateService,
     private datePipe: DatePipe
   ) {}
 
@@ -24,9 +26,12 @@ export class EventDetailPage implements OnInit {
     if(this.eid) {
       this.odooService.getEvent(this.eid).then(d => {
         this.data = d['result'];
-        this.data.start_date = this.datePipe.transform(this.data.start, "EEEE, dd.MM.yyyy");
-        this.data.end_date = this.datePipe.transform(this.data.end, "EEEE, dd.MM.yyyy");
+        this.data.start_date = this.datePipe.transform(this.data.start, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
+        this.data.end_date = this.datePipe.transform(this.data.end, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
         this.data.durationHours = (this.data.end - this.data.start) / 1000 / 3600;
+        for(let g of this.data.groups) {
+          g.hex = this.odooService.getHexColorForName(g.color);
+        }
         /*this.data.partner_answers = [
           {answer: 'yes', name: 'Anna', trikot_num: 2},
           {answer: 'yes', name: 'Angelika', trikot_num: 44},

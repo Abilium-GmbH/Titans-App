@@ -18,8 +18,7 @@
           <div class="row">
             {{'event-detail.what' | translate}}
           </div>
-          <div class="row">
-            {{data.description}}
+          <div class="row" [innerHTML]="data.description">
           </div>
         </div>
       </ion-item>
@@ -39,6 +38,12 @@
       <ion-item>
         <ion-label>{{'event-detail.where' | translate}}</ion-label>
         {{data.location? data.location : 'TBD'}}
+      </ion-item> 
+      <ion-item>
+        <ion-label>{{'event-detail.calendars' | translate}}</ion-label>
+        <div class="col">
+          <div class="calendars" *ngFor="let g of data.groups" [ngStyle]="{'color': g.hex}">{{g.name}}</div>
+        </div>
       </ion-item> 
       <ion-item>
         <ion-label>{{'event-detail.attendees' | translate}}</ion-label>

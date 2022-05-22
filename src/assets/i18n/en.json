@@ -7,11 +7,13 @@
         "close": "Close",
         "general": "General",
         "when": "When",
+        "what": "What",
         "duration": "Duration",
         "where": "Where",
         "attendees": "Attendees",
         "attendances": "Attendances",
-        "allday": "all day"
+        "allday": "all day",
+        "calendars": "Calendars"
     },
 
     "forgotpw": {

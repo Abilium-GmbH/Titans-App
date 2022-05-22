@@ -5,11 +5,34 @@
 }
 
 .gray {
-    color: gray;
+    color: var(--ion-color-tertiary);
 }
 
 .trikot {
-    color: gray;
+    color: var(--ion-color-tertiary);
     display: inline-block;
     width: 35px;
+}
+
+.row:first-child {
+    margin-top: 10px;
+}
+
+.calendars {
+    padding-left: 0.2em;
+    text-align: right;
+    padding-bottom: 5px;
+
+    &:first-child {
+        margin-top: 10px;
+    }
+
+    &:last-child {
+        margin-bottom: 10px;
+        padding-bottom: unset;
+    }
+    
+}
+
+.col {
 }

@@ -1,0 +1,24 @@
+
+.row {
+    width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: right;
+
+    .color {
+        height: 6px;
+        width: 6px;
+        border-radius: 100%;
+        margin-right: 0.3em;
+    }
+
+    .grow {
+        flex-grow: 1;
+    }
+}
+
+.right-aligned {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}

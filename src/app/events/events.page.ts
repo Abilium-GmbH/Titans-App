@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AlertController, MenuController, ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { EventDetailPage } from '../event-detail/event-detail.page';
 import { OdooService } from '../services/odoo.service';
 
@@ -17,6 +18,7 @@ export class EventsPage implements OnInit, AfterViewInit {
     private odooService: OdooService,
     private alertCtrl: AlertController,
     private datePipe: DatePipe,
+    private translate: TranslateService,
     public modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -25,14 +27,7 @@ export class EventsPage implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.menu.enable(true);
 
-    this.odooService.getMyEvents().then(ev => {
-      if('result' in ev) {
-        this.events = ev['result'];
-        for(let e of this.events) {
-          e.start_date = this.datePipe.transform(e.start, "EEEE, dd.MM.yyyy");
-        }
-      }
-    });
+    this.doRefresh();
   }
 
   changeParticipation($event, eid) {
@@ -63,5 +58,26 @@ export class EventsPage implements OnInit, AfterViewInit {
     });
     return await modal.present();
   }
-
+  
+  doRefresh($event = null) {
+    this.odooService.getMyEvents().then(ev => {
+      if($event) {
+        $event.target.complete();
+      }
+      if('result' in ev) {
+        this.events = ev['result'];
+        for(let e of this.events) {
+          e.start_date = this.datePipe.transform(e.start, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
+          e.colors = []
+          for(let g of e.groups) {
+            e.colors.push(this.odooService.getHexColorForName(g.color));
+          }
+        }
+      }
+      this.events.push(...this.events);
+      this.events.push(...this.events);
+      this.events.push(...this.events);
+      this.events.push(...this.events);
+    });
+  }
 }

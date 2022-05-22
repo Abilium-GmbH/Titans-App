@@ -15,6 +15,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import localeEn from '@angular/common/locales/en';
 import localeDe from '@angular/common/locales/de';
+import { ColormatrixComponent } from './colormatrix/colormatrix.component';
+import { ColormatrixComponentModule } from './colormatrix/colormatrix.module';
 
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeDe, 'de');
@@ -29,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   entryComponents: [],
   imports: [BrowserModule, 
     IonicModule.forRoot(), 
+    ColormatrixComponentModule,
     AppRoutingModule, 
     HttpClientModule,
     TranslateModule.forRoot({
