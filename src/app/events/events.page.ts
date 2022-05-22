@@ -74,10 +74,6 @@ export class EventsPage implements OnInit, AfterViewInit {
           }
         }
       }
-      this.events.push(...this.events);
-      this.events.push(...this.events);
-      this.events.push(...this.events);
-      this.events.push(...this.events);
     });
   }
 }
