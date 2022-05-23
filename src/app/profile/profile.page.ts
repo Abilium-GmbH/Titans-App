@@ -16,7 +16,7 @@ export class ProfilePage implements OnInit, AfterViewInit {
 
   form: FormGroup;
   fields_values: {name: string, 
-    value: string, 
+    value: any, 
     editable: boolean, 
     type: string, 
     combo_values: any[],
