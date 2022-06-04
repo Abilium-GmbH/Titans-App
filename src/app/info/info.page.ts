@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-info',
@@ -7,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,
+    private platform: Platform) { 
+      this.platform.backButton.subscribeWithPriority(10, () => {
+        this.router.navigate(['events']);
+      });
+    }
 
   ngOnInit() {
   }

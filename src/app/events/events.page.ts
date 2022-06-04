@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { AlertController, MenuController, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController, MenuController, ModalController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { EventDetailPage } from '../event-detail/event-detail.page';
 import { OdooService } from '../services/odoo.service';
@@ -19,7 +20,13 @@ export class EventsPage implements OnInit, AfterViewInit {
     private alertCtrl: AlertController,
     private datePipe: DatePipe,
     private translate: TranslateService,
-    public modalCtrl: ModalController) { }
+    public modalCtrl: ModalController,
+    private router: Router,
+    private platform: Platform) {
+      this.platform.backButton.subscribeWithPriority(1, () => {
+        navigator['app'].exitApp();
+      });
+  }
 
   ngOnInit() {
   }

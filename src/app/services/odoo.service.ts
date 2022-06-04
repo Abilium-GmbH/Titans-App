@@ -41,13 +41,12 @@ export class OdooService {
         let ck = this.cookie.get(this.STORE_SESSION_KEY);
         if(ck) {
             this.token = ck;
-            this.loadUserDataFromCookie();
-            return true;
+            return this.loadUserDataFromCookie();
         }
         return false;
     }
 
-    loadUserDataFromCookie() {
+    loadUserDataFromCookie(): boolean {
         let data = this.cookie.get(this.STORE_USER_KEY);
         if(data) {
             this.userdata = JSON.parse(data);
@@ -55,9 +54,10 @@ export class OdooService {
                 this.partner_id = this.userdata.partner_id;
                 console.log("loaded from cookie", this.userdata.user_context.lang.substring(0,2))
                 this.translate.use(this.userdata.user_context.lang.substring(0,2));
+                return true;
             }
-            
         }
+        return false;
     }
 
     login(email: string, password: string): Promise<boolean> {

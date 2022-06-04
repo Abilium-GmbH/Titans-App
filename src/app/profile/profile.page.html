@@ -9,6 +9,9 @@
         <ion-icon name="create"></ion-icon>
       </ion-button>
       <ng-template #b_editing>
+        <ion-button (click)="cancelEditing()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-button>
         <ion-button (click)="endEditing()">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
