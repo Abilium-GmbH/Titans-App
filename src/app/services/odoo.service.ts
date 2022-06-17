@@ -25,7 +25,6 @@ export class OdooService {
     partner_id: any;
 
     constructor(public http: HttpClient, 
-        private cookie: CookieService,
         private translate: TranslateService) {
     }
 
@@ -38,7 +37,7 @@ export class OdooService {
     }
 
     checkTokenAvailableAndNotExpired() {
-        let ck = this.cookie.get(this.STORE_SESSION_KEY);
+        let ck = localStorage.getItem(this.STORE_SESSION_KEY);
         if(ck) {
             this.token = ck;
             return this.loadUserDataFromCookie();
@@ -47,7 +46,7 @@ export class OdooService {
     }
 
     loadUserDataFromCookie(): boolean {
-        let data = this.cookie.get(this.STORE_USER_KEY);
+        let data = localStorage.getItem(this.STORE_USER_KEY);
         if(data) {
             this.userdata = JSON.parse(data);
             if(this.userdata) {
@@ -78,8 +77,8 @@ export class OdooService {
                 this.partner_id = this.userdata.partner_id;
                 let expires = new Date(tokenString.split("; ")[1].split("=")[1]);
                 localStorage.setItem(this.STORE_EXPIRE_DATE_KEY, JSON.stringify(expires));
-                this.cookie.set(this.STORE_SESSION_KEY, this.token, expires);
-                this.cookie.set(this.STORE_USER_KEY, JSON.stringify(this.userdata), expires);
+                localStorage.setItem(this.STORE_SESSION_KEY, this.token);
+                localStorage.setItem(this.STORE_USER_KEY, JSON.stringify(this.userdata));
                 this.translate.use(this.userdata.user_context.lang.substring(0,2));
                 resolve(true);
             }).catch(e => {
@@ -113,8 +112,8 @@ export class OdooService {
     }
 
     logout() {
-        this.cookie.delete(this.STORE_SESSION_KEY);
-        this.cookie.delete(this.STORE_USER_KEY);
+        localStorage.removeItem(this.STORE_SESSION_KEY);
+        localStorage.removeItem(this.STORE_USER_KEY);
         this.token = null;
         this.userdata = null;
     }
@@ -148,8 +147,8 @@ export class OdooService {
                 }}).toPromise().then(v => {
                 if(profileData['lang']) {
                     this.userdata.user_context.lang = profileData['lang'];
-                    let expires = localStorage.getItem(this.STORE_EXPIRE_DATE_KEY)  ? new Date(JSON.parse(localStorage.getItem(this.STORE_EXPIRE_DATE_KEY))) : new Date(new Date().getTime() + 1000*3600*24);
-                    this.cookie.set(this.STORE_USER_KEY, JSON.stringify(this.userdata), expires);
+//                    let expires = localStorage.getItem(this.STORE_EXPIRE_DATE_KEY)  ? new Date(JSON.parse(localStorage.getItem(this.STORE_EXPIRE_DATE_KEY))) : new Date(new Date().getTime() + 1000*3600*24);
+                    localStorage.setItem(this.STORE_USER_KEY, JSON.stringify(this.userdata));
                 }
                 resolve(v);
             });

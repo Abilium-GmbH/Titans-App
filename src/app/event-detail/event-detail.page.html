@@ -1,7 +1,9 @@
-<ion-header>
+<ion-header mode="md">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button (click)="close()">{{'event-detail.close' | translate}}</ion-button>
+      <ion-button (click)="close()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>{{data?.name}}</ion-title>
   </ion-toolbar>

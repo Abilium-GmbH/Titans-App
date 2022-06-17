@@ -38,7 +38,7 @@ ion-button.text-icon-only {
     //flex: 1;
     position: relative;
     padding: 0!important;
-    text-align: center;
+    text-align: left;
     font-size: inherit;
     --color: var(--ion-color-dark) !important;
     font-weight: normal;
@@ -65,7 +65,9 @@ ion-label.never-disabled {
 }
 
 .w-50 {
-    width: 50%;
+    min-width: 50%;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .mw-200 {
@@ -74,4 +76,37 @@ ion-label.never-disabled {
 
 .mw-unset {
     max-width: unset !important;
+}
+
+ion-title {
+    opacity: 1 !important;
+    color: var(--ion-color-primary);
+}
+
+ion-menu-button {
+    --color: var(--ion-color-primary);
+}
+
+ion-buttons.sc-ion-buttons-md-s {
+    ion-button.button {
+        --color: var(--ion-color-primary);
+        font-size: 16px;
+        height: 48px;
+    }
+}
+
+ion-item.ios {
+    --min-height: 55px;
+}
+
+ion-list {
+    ion-select.combo {
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        width: 100%;
+        --padding-start: 0px;
+        padding-left: 0;
+        --padding-end: 10px;
+    }
 }

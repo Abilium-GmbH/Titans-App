@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header mode="md">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -20,12 +20,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{'profile.title' | translate}}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
   
   <ion-list [formGroup]="form">
     <ion-item *ngFor="let f of fields_values">
