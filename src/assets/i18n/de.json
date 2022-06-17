@@ -63,6 +63,13 @@
         "profile": "Profil",
         "info": "Über",
         "logout": "Abmelden"
+    },
+
+    "alert": {
+        "error_loading_data": {
+            "title": "Fehler beim Laden",
+            "message": "Konnte keine Daten laden. Bitte versuche es später nochmal"
+        }
     }
 
 }

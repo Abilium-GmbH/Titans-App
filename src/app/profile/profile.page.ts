@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController, Platform } from '@ionic/angular';
+import { AlertController, LoadingController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { ResCountry } from '../models/country';
@@ -31,6 +31,7 @@ export class ProfilePage implements OnInit, AfterViewInit {
   loading: any;
   constructor(private odooService: OdooService, 
     private fb: FormBuilder, 
+    private alertCtrl: AlertController,
     private translate: TranslateService,
     private router: Router,
     private loadingCtrl: LoadingController,
@@ -79,6 +80,9 @@ export class ProfilePage implements OnInit, AfterViewInit {
             }));
           }
         }
+      }).catch(e => {
+        l.dismiss();
+        //this.alertCtrl.create({header: this.translate.instant("alert.error_loading_data.title"), message: this.translate.instant('alert.error_loading_data.message')}).then(a => a.present());
       });
       soup.finished().then((val:any) => {
         l.dismiss();

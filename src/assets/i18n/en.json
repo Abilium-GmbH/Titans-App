@@ -63,6 +63,13 @@
         "profile": "Profile",
         "info": "About",
         "logout": "Sign off"
+    },
+
+    "alert": {
+        "error_loading_data": {
+            "title": "Error loading data",
+            "message": "Could not load any data. Please try again later."
+        }
     }
 
 }
