@@ -27,8 +27,8 @@ export class EventDetailPage implements OnInit {
       this.odooService.getEvent(this.eid).then(d => {
         this.data = d['result'];
         this.data.start_date = this.datePipe.transform(this.data.start, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
-        this.data.end_date = this.datePipe.transform(this.data.end, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
-        this.data.durationHours = (this.data.end - this.data.start) / 1000 / 3600;
+        this.data.end_date = this.datePipe.transform(this.data.stop, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
+        this.data.durationHours = (new Date(this.data.stop).getTime() - new Date(this.data.start).getTime()) / 1000 / 3600;
         for(let g of this.data.groups) {
           g.hex = this.odooService.getHexColorForName(g.color);
         }
