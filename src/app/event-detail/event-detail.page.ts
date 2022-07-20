@@ -26,8 +26,8 @@ export class EventDetailPage implements OnInit {
     if(this.eid) {
       this.odooService.getEvent(this.eid).then(d => {
         this.data = d['result'];
-        this.data.start_date = this.datePipe.transform(this.data.start, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
-        this.data.end_date = this.datePipe.transform(this.data.stop, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
+        this.data.start_date = this.datePipe.transform(this.convertDateStringToTimezone(this.data.start), "EEEE, dd.MM.yyyy HH:mm", "", this.translate.currentLang);
+        this.data.end_date = this.datePipe.transform(this.convertDateStringToTimezone(this.data.end), "EEEE, dd.MM.yyyy HH:mm", "", this.translate.currentLang);
         this.data.durationHours = Math.round((new Date(this.data.stop).getTime() - new Date(this.data.start).getTime()) / 1000) / 3600;
         this.data.durationFormatted = this.formatDuration(this.data.durationHours);
         for(let g of this.data.groups) {
@@ -53,6 +53,10 @@ export class EventDetailPage implements OnInit {
         }).then(a => a.present());
       })
     }
+  }
+
+  convertDateStringToTimezone(dateStr: string) {
+    return new Date(dateStr).getTime() - (new Date().getTimezoneOffset()*60*1000);
   }
 
   formatDuration(durationNumber: number): string {
