@@ -28,7 +28,8 @@ export class EventDetailPage implements OnInit {
         this.data = d['result'];
         this.data.start_date = this.datePipe.transform(this.data.start, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
         this.data.end_date = this.datePipe.transform(this.data.stop, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
-        this.data.durationHours = (new Date(this.data.stop).getTime() - new Date(this.data.start).getTime()) / 1000 / 3600;
+        this.data.durationHours = Math.round((new Date(this.data.stop).getTime() - new Date(this.data.start).getTime()) / 1000) / 3600;
+        this.data.durationFormatted = this.formatDuration(this.data.durationHours);
         for(let g of this.data.groups) {
           g.hex = this.odooService.getHexColorForName(g.color);
         }
@@ -52,6 +53,10 @@ export class EventDetailPage implements OnInit {
         }).then(a => a.present());
       })
     }
+  }
+
+  formatDuration(durationNumber: number): string {
+    return Math.floor(durationNumber) + ':' + ((durationNumber - Math.floor(durationNumber))*60);
   }
 
   sortPartnerAnswers(a,b) {

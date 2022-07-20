@@ -26,7 +26,7 @@
     <ion-item *ngFor="let f of fields_values">
       <ion-label class="w-50 mw-200 never-disabled">{{'profile.' + f.name | translate}}</ion-label>
       <ng-container [ngSwitch]="f.type">
-        <ion-input *ngSwitchCase="'text'"
+        <ion-input *ngSwitchCase="'text'" class="no-padding-start"
         [readonly]="!f.editable || !editing" 
         [disabled]="!f.editable && editing" 
         [value]="f.value"

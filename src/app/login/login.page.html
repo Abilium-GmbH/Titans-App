@@ -11,7 +11,7 @@
       </ion-item>
       <ion-item lines="none">
         <ion-label>{{'login.password' | translate}}</ion-label>
-        <ion-input [type]="passwordType" formControlName="password"></ion-input>
+        <ion-input id="pw" [type]="passwordType" formControlName="password"></ion-input>
         <ion-button class="text-icon-only" slot="end" (click)="togglePasswordType()">
           <ion-icon slot="icon-only" [name]="eyeType"></ion-icon>
         </ion-button>

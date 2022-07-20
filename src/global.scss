@@ -43,6 +43,7 @@ ion-button.text-icon-only {
     --color: var(--ion-color-dark) !important;
     font-weight: normal;
     text-transform: none;
+    --padding-start: 0px;
 
     &[disabled] {
         opacity: 1;

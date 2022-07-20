@@ -12,7 +12,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-item *ngFor="let e of events" (click)="showDetails(e.id)">
+    <ion-item *ngFor="let e of events" (click)="showDetails(e.id)" [ngClass]="{'old': e.old_event}">
       <div class="col">
         <div class="row date">
           {{e.start_date}}

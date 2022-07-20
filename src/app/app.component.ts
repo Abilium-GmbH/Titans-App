@@ -37,7 +37,9 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.menu.enable(false);
-    this.odooService.checkTokenAvailableAndNotExpired();
+    if(!this.odooService.checkTokenAvailableAndNotExpired()) {
+      this.logout();
+    }
   }
 
   public logout() {

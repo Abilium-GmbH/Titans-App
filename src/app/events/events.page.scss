@@ -34,4 +34,8 @@ ion-segment {
 ion-list {
     overflow-y: scroll;
     height: 100%;
+
+    ion-item.old {
+        opacity: 0.75;
+    }
 }

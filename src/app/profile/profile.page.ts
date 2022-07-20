@@ -36,9 +36,6 @@ export class ProfilePage implements OnInit, AfterViewInit {
     private router: Router,
     private loadingCtrl: LoadingController,
     private platform: Platform) { 
-      this.platform.backButton.subscribeWithPriority(10, () => {
-        this.router.navigate(['events']);
-      });
     }
 
   ngOnInit() {

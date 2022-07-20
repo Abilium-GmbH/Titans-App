@@ -11,7 +11,6 @@ export class ColormatrixComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.colors);
   }
 
 }

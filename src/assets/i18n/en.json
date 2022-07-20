@@ -32,7 +32,13 @@
         "email": "Email",
         "password": "Password",
         "login": "Sign in",
-        "forgotpwlink": "Lost password?"
+        "forgotpwlink": "Lost password?",
+
+        "error": {
+            "title": "Error",
+            "message": "Email or password is wrong",
+            "close": "Close"
+        }
     },
 
     "profile": {

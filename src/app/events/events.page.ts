@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, MenuController, ModalController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { EventDetailPage } from '../event-detail/event-detail.page';
@@ -24,7 +24,11 @@ export class EventsPage implements OnInit, AfterViewInit {
     private router: Router,
     private platform: Platform) {
       this.platform.backButton.subscribeWithPriority(1, () => {
-        navigator['app'].exitApp();
+        if(this.router.url.indexOf("events")>=0) {
+          navigator['app'].exitApp();
+        } else {
+          this.router.navigate(['events']);
+        }
       });
   }
 
@@ -72,14 +76,21 @@ export class EventsPage implements OnInit, AfterViewInit {
         $event.target.complete();
       }
       if('result' in ev) {
-        this.events = ev['result'];
-        for(let e of this.events) {
+        let events = ev['result'];
+        for(let e of events) {
+          e.start_date_unix = new Date(e.start).getTime();
+          if(e.start_date_unix < new Date().getTime()) {
+            e.old_event = true;
+          } else {
+            e.old_event = false;
+          }
           e.start_date = this.datePipe.transform(e.start, "EEEE, dd.MM.yyyy", null, this.translate.currentLang);
           e.colors = []
           for(let g of e.groups) {
             e.colors.push(this.odooService.getHexColorForName(g.color));
           }
         }
+        this.events = events.sort((a,b) => (a.start_date_unix > b.start_date_unix) ? 1 : -1 );
       }
     });
   }

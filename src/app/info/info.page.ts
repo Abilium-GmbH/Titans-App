@@ -11,9 +11,9 @@ export class InfoPage implements OnInit {
 
   constructor(private router: Router,
     private platform: Platform) { 
-      this.platform.backButton.subscribeWithPriority(10, () => {
+      /*this.platform.backButton.subscribeWithPriority(10, () => {
         this.router.navigate(['events']);
-      });
+      });*/
     }
 
   ngOnInit() {

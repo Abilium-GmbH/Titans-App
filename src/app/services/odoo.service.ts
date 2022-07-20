@@ -19,6 +19,7 @@ export class OdooService {
     private STORE_USER_KEY = "STORE_USER_KEY";
     private STORE_SESSION_KEY = "STORE_SESSION_KEY";
     private STORE_EXPIRE_DATE_KEY = "STORE_EXPIRE_DATE_KEY";
+    private STORE_USER_CREDENTIALS = "STORE_USER_CREDENTIALS";
 
     token: string;
     userdata: any;
@@ -38,11 +39,19 @@ export class OdooService {
 
     checkTokenAvailableAndNotExpired() {
         let ck = localStorage.getItem(this.STORE_SESSION_KEY);
-        if(ck) {
+        if(ck && !this.checkTokenExpired()) {
             this.token = ck;
             return this.loadUserDataFromCookie();
         }
         return false;
+    }
+
+    getLoginCredentials() {
+        let ck = localStorage.getItem(this.STORE_USER_CREDENTIALS);
+        if(ck) {
+            return JSON.parse(ck);
+        }
+        return {};
     }
 
     loadUserDataFromCookie(): boolean {
@@ -51,12 +60,21 @@ export class OdooService {
             this.userdata = JSON.parse(data);
             if(this.userdata) {
                 this.partner_id = this.userdata.partner_id;
-                console.log("loaded from cookie", this.userdata.user_context.lang.substring(0,2))
                 this.translate.use(this.userdata.user_context.lang.substring(0,2));
                 return true;
             }
         }
         return false;
+    }
+
+    checkTokenExpired(): boolean {
+        let expiryDate = localStorage.getItem(this.STORE_EXPIRE_DATE_KEY);
+        if(expiryDate) {
+            if(parseInt(expiryDate) > new Date().getTime()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     login(email: string, password: string): Promise<boolean> {
@@ -75,10 +93,11 @@ export class OdooService {
                 this.token = tokenString.split("; ")[0].split("=")[1];
                 this.userdata = data.body['result'];
                 this.partner_id = this.userdata.partner_id;
-                let expires = new Date(tokenString.split("; ")[1].split("=")[1]);
-                localStorage.setItem(this.STORE_EXPIRE_DATE_KEY, JSON.stringify(expires));
+                let expires = new Date(tokenString.split("; ")[1].split("=")[1].replace(/-/g, ' '));
+                localStorage.setItem(this.STORE_EXPIRE_DATE_KEY, expires.getTime() + "");
                 localStorage.setItem(this.STORE_SESSION_KEY, this.token);
                 localStorage.setItem(this.STORE_USER_KEY, JSON.stringify(this.userdata));
+                localStorage.setItem(this.STORE_USER_CREDENTIALS, JSON.stringify({email: email, password: password}));
                 this.translate.use(this.userdata.user_context.lang.substring(0,2));
                 resolve(true);
             }).catch(e => {
