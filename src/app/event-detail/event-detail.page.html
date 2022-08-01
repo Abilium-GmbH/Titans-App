@@ -55,11 +55,11 @@
       <ion-item-divider>
         {{'event-detail.attendances' | translate}}
       </ion-item-divider>
-      <ion-item *ngFor="let a of data.partner_answers" [ngClass]="{'gray': !a.answer}">
-        <ion-label>
-          <span class="trikot">
-            <ng-container *ngIf="a.trikot_num">
-              #{{a.trikot_num}}
+      <ion-item *ngFor="let a of data.partner_answers">
+        <ion-label [ngClass]="{'gray': a.answer!='yes'}">
+          <span class="position">
+            <ng-container *ngIf="a.position">
+              {{a.position.substring(0,1)}}
             </ng-container>
           </span>
           {{a.name}}</ion-label>

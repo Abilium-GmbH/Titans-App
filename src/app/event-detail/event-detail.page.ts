@@ -41,6 +41,7 @@ export class EventDetailPage implements OnInit {
           {answer: '', name: 'Hannes', trikot_num: 11},
           {answer: null, name: 'Bert', trikot_num: 23},
       ]*/
+        this.data.partner_answers = this.data.partner_answers.filter(a => a.name != "testermobile" && a.position);
         this.data.partner_answers.sort((a,b) => this.sortPartnerAnswers(a,b))
       }).catch(e => {
         this.alertCtrl.create({
@@ -69,7 +70,7 @@ export class EventDetailPage implements OnInit {
     if(mappedAnswerA > mappedAnswerB) {
       return 1;
     } else if(mappedAnswerA == mappedAnswerB) {
-      return this.sortAlphabetically(a,b);
+      return this.sortByPosition(a,b);
     } else {
       return -1;
     }
@@ -82,6 +83,20 @@ export class EventDetailPage implements OnInit {
       return 1;
     } else {
       return 0;
+    }
+  }
+
+  positionsOrder = ['m','g','d','a'];
+
+  sortByPosition(a,b) {
+    let posA = (a.position)? this.positionsOrder.indexOf(a.position.substring(0,1)) : -1;
+    let posB = (b.position)? this.positionsOrder.indexOf(b.position.substring(0,1)) : -1;
+    if(posA > posB) {
+      return 1;
+    } else if(posA == posB) {
+      return this.sortAlphabetically(a.name, b.name);
+    } else {
+      return -1;
     }
   }
 

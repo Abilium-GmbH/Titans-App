@@ -5,13 +5,13 @@
 }
 
 .gray {
-    color: var(--ion-color-tertiary);
+    opacity: 0.65;
 }
 
-.trikot {
-    color: var(--ion-color-tertiary);
+.position {
     display: inline-block;
     width: 35px;
+    text-transform: uppercase;
 }
 
 .row:first-child {
