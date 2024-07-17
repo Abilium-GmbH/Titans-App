@@ -17,7 +17,6 @@ import localeEn from '@angular/common/locales/en';
 import localeDe from '@angular/common/locales/de';
 import { ColormatrixComponent } from './colormatrix/colormatrix.component';
 import { ColormatrixComponentModule } from './colormatrix/colormatrix.module';
-import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 
 registerLocaleData(localeEn, 'en');
 registerLocaleData(localeDe, 'de');
@@ -46,7 +45,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   OdooService,  
   CookieService,
   DatePipe,
-  StatusBar,
   { provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true},
 ],
   bootstrap: [AppComponent],

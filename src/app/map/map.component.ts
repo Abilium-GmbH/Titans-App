@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.initializeMap();
+    //this.initializeMap();
 
     let popup = L.popup();
         popup.setContent("<b>EVENT LOCATION</b><br/>");
@@ -28,7 +28,7 @@ export class MapComponent implements OnInit {
             .bindPopup(popup);
   }
 
-  initializeMap() {
+  /*initializeMap() {
     if(!this.map) {
         const apiKey = environment.esriKey;
     
@@ -40,11 +40,9 @@ export class MapComponent implements OnInit {
           apiKey: apiKey
         }).addTo(this.map);
 
-        /*this.map.on('move', (event) => this.eventChangeFunc(event));
-        this.map.on('click', (event) => this.eventClickMapFunc(event));*/
     } else {
         this.map.clearLayers();
     }
-  }
+  }*/
 
 }

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.abilium.berntitans" version="2.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.abilium.berntitans" version="2.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Bern Titans</name>
     <description>Die offizielle Mitgliederapp</description>
     <author email="info@abilium.com" href="https://www.abilium.io/">Abilium GmbH</author>
@@ -98,9 +98,4 @@
         <splash height="1792" src="resources/ios/splash/Default-1792h~iphone.png" width="828" />
         <splash height="828" src="resources/ios/splash/Default-Landscape-1792h~iphone.png" width="1792" />
     </platform>
-    <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
-    <plugin name="cordova-plugin-device" spec="2.0.2" />
-    <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^5.0.0" />
-    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
 </widget>

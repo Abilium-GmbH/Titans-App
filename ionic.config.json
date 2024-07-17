@@ -1,7 +1,7 @@
 {
   "name": "titansapp",
   "integrations": {
-    "cordova": {}
+    "capacitor": {}
   },
   "type": "angular"
 }

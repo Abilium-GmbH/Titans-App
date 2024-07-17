@@ -1,6 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { StatusBar } from '@awesome-cordova-plugins/status-bar/ngx';
 import { MenuController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
@@ -20,15 +19,10 @@ export class AppComponent implements AfterViewInit {
     private odooService: OdooService,
     private menu: MenuController,
     private platform: Platform,
-    private statusBar: StatusBar,
     private translate: TranslateService) {
 
       translate.setDefaultLang(environment.DEFAULT_LANGUAGE);
       this.setBrowserLanguage();
-
-      this.platform.ready().then(() => {
-        this.statusBar.styleDefault();
-      });
     }
 
   setBrowserLanguage() {
