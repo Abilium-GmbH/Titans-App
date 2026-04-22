@@ -1,0 +1,7 @@
+{
+  "name": "titansapp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

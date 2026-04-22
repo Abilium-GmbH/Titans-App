@@ -1,0 +1,121 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+ion-button.text-icon-only {
+    --background: none;
+    --color: var(--ion-color-primary);
+    --box-shadow: none;
+}
+
+.date-button {
+    margin: 0;
+    display: flex;
+    //width: 100%;
+    //flex: 1;
+    position: relative;
+    padding: 0 !important;
+    text-align: left;
+    font-size: inherit;
+    --color: var(--ion-color-dark) !important;
+    font-weight: normal;
+    text-transform: none;
+    --padding-start: 0px;
+
+    &[disabled] {
+        opacity: 1;
+    }
+}
+
+ion-app.md {
+
+    ion-toolbar {
+        --color: var(--ion-color-primary)
+    }
+}
+
+ion-label.never-disabled {
+    opacity: 1 !important;
+}
+
+.combo {
+    --padding-start: 8px;
+}
+
+.w-50 {
+    min-width: 50%;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.mw-200 {
+    max-width: 200px;
+}
+
+.mw-unset {
+    max-width: unset !important;
+}
+
+ion-title {
+    opacity: 1 !important;
+    color: var(--ion-color-primary);
+}
+
+ion-menu-button {
+    --color: var(--ion-color-primary);
+}
+
+ion-buttons.sc-ion-buttons-md-s {
+    ion-button.button {
+        --color: var(--ion-color-primary);
+        font-size: 16px;
+        height: 48px;
+    }
+}
+
+ion-item.ios {
+    --min-height: 55px;
+}
+
+ion-list {
+    ion-select.combo {
+        flex-grow: 1;
+        flex-shrink: 1;
+        display: flex;
+        width: 100%;
+        --padding-start: 0px;
+        padding-left: 0;
+        --padding-end: 10px;
+    }
+}
+
+body {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.main-content {
+    padding-bottom: env(safe-area-inset-bottom);
+}

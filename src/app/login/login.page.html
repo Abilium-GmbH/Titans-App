@@ -1,0 +1,26 @@
+<ion-content>
+
+  <div class="logo">
+    <img src="./assets/img/Bern_Lacrosse_Logo_595_1200.png"/>
+  </div>
+  <div class="box">
+    <ion-list [formGroup]="form">
+      <ion-item>
+        <ion-label>{{'login.email' | translate}}</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>{{'login.password' | translate}}</ion-label>
+        <ion-input id="pw" [type]="passwordType" formControlName="password"></ion-input>
+        <ion-button class="text-icon-only" slot="end" (click)="togglePasswordType()">
+          <ion-icon slot="icon-only" [name]="eyeType"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-button expand="block" [disabled]="!form.valid" (click)="login()">{{'login.login' | translate}}</ion-button>
+      <ion-item lines="none" class="forgotpw">
+        <ion-label></ion-label>
+        <ion-button class="text-icon-only" routerLink="/forgotpw">{{'login.forgotpwlink' | translate}}</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

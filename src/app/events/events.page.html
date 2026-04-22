@@ -1,0 +1,38 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{'events.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item *ngFor="let e of events" (click)="showDetails(e.id)" [ngClass]="{'old': e.old_event}">
+      <div class="col">
+        <div class="row date">
+          {{e.start_date}}
+        </div>
+        <div class="row">
+          {{e.name}}
+        </div>
+        
+      </div>
+      <div class="row">
+        <app-colormatrix [colors]="e.colors"></app-colormatrix>
+      </div>
+      <ion-segment slot="end" [value]="e.my_answer" (ionChange)="changeParticipation($event, e.id)">
+        <ion-segment-button value="yes" (click)="stopPropagation($event)">
+            <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="no" (click)="stopPropagation($event)">
+            <ion-icon name="close-outline"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+  </ion-list>
+</ion-content>

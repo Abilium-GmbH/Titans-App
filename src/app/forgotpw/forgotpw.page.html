@@ -1,0 +1,22 @@
+<ion-header mode="md">
+  <ion-toolbar>
+    <ion-title>{{'forgotpw.title' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list [formGroup]="form">
+    <ion-item lines="none">
+      <ion-label>{{'forgotpw.email' | translate}}</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="resetPassword()">{{'forgotpw.reset' | translate}}</ion-button>
+    <ion-item *ngIf="error">
+      <p class="error">{{'forgotpw.error' | translate}}</p>
+    </ion-item>
+    <ion-item class="login" lines="none">
+      <ion-label></ion-label>
+      <ion-button class="text-icon-only" routerLink="/login">{{'forgotpw.login' | translate}}</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
